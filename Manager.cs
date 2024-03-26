@@ -43,9 +43,8 @@ namespace Uppgift5
                     UI.GarageCreated(size);
                     return true;
                 case ConsoleKey.D2:
-                    UI.AddVehicle();
+                    UI.AskLicenseNumber();
                     string input = UI.GetReadLine();
-                    Console.WriteLine($"LicenseNumber : {input}");
 
                     //TODO: Let user select vehicle type.
                     //TODO: Let user select vehicle color.
@@ -81,11 +80,24 @@ namespace Uppgift5
                     var vehicles = GarageHandler.GetAllVehicles();
                     UI.ListCars(vehicles);
                     return true;
-                //List vehicletypes & amount of each?
+                //List vehicletypes & amount of each
                 case ConsoleKey.D5:
+                    vehicles = GarageHandler.GetVehiclesAndAmount();
+                    UI.ListCars(vehicles);
                     return true;
                 //Search vehicle by licensenumber
                 case ConsoleKey.D6:
+                    UI.AskLicenseNumber();
+                    input = UI.GetReadLine();
+                    string vehicle = GarageHandler.GetVehicleByLicenseNumber(input);
+                    if(vehicle != null)
+                    {
+                        UI.ShowCar(vehicle);
+                    }
+                    else
+                    {
+                        UI.VehicleNotInGarage(input);
+                    }
                     return true;
                 //Search vehicle in garage, multiple criteria
                 case ConsoleKey.D7:

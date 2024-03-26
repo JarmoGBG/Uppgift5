@@ -91,9 +91,7 @@ namespace Uppgift5
             for (int i = 0; i < VehicleCount; i++)
             {
                 vehicle = Vehicles[i];
-                vehicles[i] = new string ($"{vehicle.GetType().Name}, Licensenumber:{vehicle.LicenseNumber}, Color:{vehicle.VehicleColor.ToString()}, Number of wheels:{vehicle.NumberOfWheels}");
-                    
-                //Add subclass specific info for all subclasses
+                vehicles[i] = CreateVehicleString(vehicle);
             }
 
             return vehicles;
@@ -106,7 +104,21 @@ namespace Uppgift5
         /// <returns>String with vehicle data if found, null otherwise</returns>
         public string GetVehicleByLicenseNumber(string licenseNumber)
         {
+            licenseNumber = licenseNumber.ToUpper();
+            for(int i = 0; i < VehicleCount; i++)
+            {
+                if (Vehicles[i].LicenseNumber.Equals(licenseNumber))
+                {
+                    return CreateVehicleString(Vehicles[i]);
+                }
+            }
             return null;
+        }
+
+        private string CreateVehicleString(Vehicle vehicle)
+        {
+            //TODO : Add subclass specific info
+            return new string($"{vehicle.GetType().Name}, Licensenumber:{vehicle.LicenseNumber}, Color:{vehicle.VehicleColor.ToString()}, Number of wheels:{vehicle.NumberOfWheels}");
         }
 
         public string[] GetVehicleTypesAndAmount()

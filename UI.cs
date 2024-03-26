@@ -48,7 +48,7 @@ namespace Uppgift5
             Console.ReadLine(); 
         }
 
-        internal static void AddVehicle()
+        internal static void AskLicenseNumber()
         {
                 Console.WriteLine("\nEnter licenseplate number : ");
         }
@@ -80,12 +80,22 @@ namespace Uppgift5
 
         internal static void ListCars(string[] vehicles)
         {
-            Console.WriteLine("\nCars in garage :");
+            Console.WriteLine("\nIn garage :");
 
             foreach(string vehicle in vehicles) 
             {
-                Console.WriteLine($"{vehicle}");
+                ShowCar(vehicle);
             }
+        }
+
+        internal static void ShowCar(string vehicle)
+        {
+            Console.WriteLine($"{vehicle}");
+        }
+
+        internal static void VehicleNotInGarage(string licenseNumber)
+        {
+            Console.WriteLine($"Vehicle with license {licenseNumber} not in garage");
         }
 
         internal static ConsoleKey GetKeyPressed() => Console.ReadKey(intercept: true).Key;

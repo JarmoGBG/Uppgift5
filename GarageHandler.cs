@@ -33,5 +33,15 @@ namespace Uppgift5
         { 
             return Garage.GetAllVehicles();
         }
+
+        internal string[] GetVehiclesAndAmount()
+        {
+            return Garage.GetVehicleTypesAndAmount();
+        }
+
+        internal string GetVehicleByLicenseNumber(string licenseNumber)
+        {
+            return Garage.GetVehicleByLicenseNumber(licenseNumber);
+        }
     }
 }

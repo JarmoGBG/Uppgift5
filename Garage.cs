@@ -2,14 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Uppgift5.Vehicles;
 
+[assembly:InternalsVisibleTo("Uppgift5.MSTest")]
+
 namespace Uppgift5
 {
     //TODO: Make test cases for all public methods
-    internal class Garage<T> : IEnumerable<T> where T : Vehicle
+    public class Garage<T> : IEnumerable<T>, IGarage<T> where T : Vehicle
     {
         private Vehicle[] Vehicles;
         private readonly uint Capacity;
@@ -105,7 +108,7 @@ namespace Uppgift5
         public string GetVehicleByLicenseNumber(string licenseNumber)
         {
             licenseNumber = licenseNumber.ToUpper();
-            for(int i = 0; i < VehicleCount; i++)
+            for (int i = 0; i < VehicleCount; i++)
             {
                 if (Vehicles[i].LicenseNumber.Equals(licenseNumber))
                 {
@@ -113,6 +116,20 @@ namespace Uppgift5
                 }
             }
             return null;
+        }
+
+        public bool IsVehicleInGarage(string licenseNumber)
+        {
+            licenseNumber = licenseNumber.ToUpper();
+            for (int i = 0; i < VehicleCount; i++)
+            {
+                if (Vehicles[i].LicenseNumber.Equals(licenseNumber))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private string CreateVehicleString(Vehicle vehicle)
@@ -129,7 +146,7 @@ namespace Uppgift5
 
         public IEnumerator<T> GetEnumerator()
         {
-            foreach(var vehicle in Vehicles)
+            foreach (var vehicle in Vehicles)
             {
                 yield return (T)vehicle;
             }

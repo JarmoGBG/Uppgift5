@@ -60,7 +60,7 @@ namespace Uppgift5
 
         internal static void VehicleNotAdded()
         {
-            Console.WriteLine("Vehicle was not added to garage because it was already full");
+            Console.WriteLine("Vehicle was not added to garage");
         }
 
         internal static void RemoveVehicle() 
@@ -98,6 +98,10 @@ namespace Uppgift5
             Console.WriteLine($"Vehicle with license {licenseNumber} not in garage");
         }
 
+        internal static void ShowErrorMessage(string message)
+        {
+            Console.WriteLine($"Error : {message}");
+        }
         internal static ConsoleKey GetKeyPressed() => Console.ReadKey(intercept: true).Key;
 
         internal static String GetReadLine() => Console.ReadLine()!;

@@ -9,7 +9,7 @@ namespace Uppgift5
 {
     internal class GarageHandler
     {
-        private Garage<Vehicle> Garage = null!;
+        private IGarage<Vehicle> Garage = null!;
 
         internal void CreateGarage(uint size)
         {
@@ -18,7 +18,14 @@ namespace Uppgift5
 
         internal bool AddVehicle(string licenseNumber)
         {
-            //TODO: Check if license number already in garage, return false if exists.
+            if (Garage == null)
+            {
+                throw new NullReferenceException("Garage not initialized");
+            }
+            if (Garage.IsVehicleInGarage(licenseNumber))
+            {
+                return false;
+            }
             Car vehicle = new Car(licenseNumber, VehicleEnums.VehicleColor.Black, 4, VehicleEnums.Fuel.Gasoline);
             var didItWork = Garage.AddVehicle(vehicle);
             return didItWork;
@@ -26,21 +33,37 @@ namespace Uppgift5
 
         internal bool RemoveVehicle(string licenseNumber)
         {
+            if(Garage ==null)
+            {
+                throw new NullReferenceException("Garage not initialized");
+            }
             return Garage.RemoveVehicle(licenseNumber);
         }
 
         internal string[] GetAllVehicles()
-        { 
+        {
+            if (Garage == null)
+            {
+                throw new NullReferenceException("Garage not initialized");
+            }
             return Garage.GetAllVehicles();
         }
 
         internal string[] GetVehiclesAndAmount()
         {
+            if (Garage == null)
+            {
+                throw new NullReferenceException("Garage not initialized");
+            }
             return Garage.GetVehicleTypesAndAmount();
         }
 
         internal string GetVehicleByLicenseNumber(string licenseNumber)
         {
+            if (Garage == null)
+            {
+                throw new NullReferenceException("Garage not initialized");
+            }
             return Garage.GetVehicleByLicenseNumber(licenseNumber);
         }
     }

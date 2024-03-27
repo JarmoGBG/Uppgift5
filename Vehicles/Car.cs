@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift5.Vehicles
 {
-    internal class Car : Vehicle
+    public class Car : Vehicle
     {
         public VehicleEnums.Fuel FuelType {  get; set; }
         

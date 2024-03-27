@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift5.Vehicles
 {
-    internal abstract class Vehicle
+    public abstract class Vehicle
     {
         private string licenseNumber;
         public string LicenseNumber

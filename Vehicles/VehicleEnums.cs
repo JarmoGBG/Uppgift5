@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift5.Vehicles
 {
-    internal class VehicleEnums
+    public class VehicleEnums
     {
         public enum VehicleTypes
         {

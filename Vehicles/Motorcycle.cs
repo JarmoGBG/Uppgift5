@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift5.Vehicles
 {
-    internal class Motorcycle : Vehicle
+    public class Motorcycle : Vehicle
     {
         public bool IsAHarley { get; set; }
 

@@ -51,28 +51,40 @@ namespace Uppgift5
                     //TODO: Let user select number of wheels.
                     //TODO: Let user select vehicle specific options.
                     //TODO: Catch exceptions and send text to UI to print.
-                    if (GarageHandler.AddVehicle(input))
+                    try
                     {
-                        UI.VehicleAdded();
-                    }
-                    else
+                        if (GarageHandler.AddVehicle(input))
+                        {
+                            UI.VehicleAdded();
+                        }
+                        else
+                        {
+                            UI.VehicleNotAdded();
+                        }
+                    }catch(Exception ex)
                     {
-                        UI.VehicleNotAdded();
+                        UI.ShowErrorMessage(ex.Message);
                     }
                     return true;
                 case ConsoleKey.D3:
                     UI.RemoveVehicle();
                     input = UI.GetReadLine();
 
-                    if (GarageHandler.RemoveVehicle(input))
+                    try
                     {
-                        //Show UI vehicle removed
-                        UI.VehicleRemoved();
-                    }
-                    else
+                        if (GarageHandler.RemoveVehicle(input))
+                        {
+                            //Show UI vehicle removed
+                            UI.VehicleRemoved();
+                        }
+                        else
+                        {
+                            //Show UI vehicle was not in garage
+                            UI.VehicleNotRemoved();
+                        }
+                    }catch(Exception ex)
                     {
-                        //Show UI vehicle was not in garage
-                        UI.VehicleNotRemoved();
+                        UI.ShowErrorMessage(ex.Message);
                     }
                     return true;
                 //List all parked vehicles
